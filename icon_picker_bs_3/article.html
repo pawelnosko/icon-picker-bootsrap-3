@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From Legacy to Lasting: A Production-Grade Icon Picker for Bootstrap 3 (Ready for Bootstrap 5)</title>
+  <meta name="description" content="A deep technical guide to icon_picker_bs_3: architecture, use cases, localization, categorized icon browsing, and a migration path from Bootstrap 3 to Bootstrap 5.">
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      color: #222;
+      margin: 0;
+      background: #f7f7f8;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 32px;
+    }
+    h1, h2, h3 {
+      line-height: 1.25;
+      color: #111;
+    }
+    h1 {
+      margin-top: 0;
+      font-size: 34px;
+    }
+    h2 {
+      margin-top: 36px;
+      font-size: 28px;
+    }
+    h3 {
+      margin-top: 26px;
+      font-size: 22px;
+    }
+    p {
+      margin: 14px 0;
+    }
+    ul {
+      margin: 10px 0 10px 24px;
+    }
+    li {
+      margin: 6px 0;
+    }
+    .lead {
+      font-size: 18px;
+      color: #333;
+    }
+    .meta {
+      background: #f2f4f8;
+      border-left: 4px solid #3b73d9;
+      padding: 14px 16px;
+      margin: 16px 0 22px 0;
+    }
+    pre {
+      background: #1f2430;
+      color: #e6e9ef;
+      overflow-x: auto;
+      padding: 14px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    code {
+      font-family: Consolas, Monaco, "Courier New", monospace;
+    }
+    .note {
+      background: #fff9e8;
+      border: 1px solid #f2d27b;
+      padding: 12px 14px;
+      border-radius: 4px;
+      margin: 14px 0;
+    }
+  </style>
+</head>
+<body>
+  <article class="wrap">
+    <h1>From Legacy to Lasting: A Production-Grade Icon Picker for Bootstrap 3 (Ready for Bootstrap 5)</h1>
+
+    <div class="meta">
+      <strong>Author:</strong> Paweł Nosko<br>
+      <strong>Website:</strong> <a href="https://pawelnosko.com">https://pawelnosko.com</a><br>
+      <strong>Plugin:</strong> <code>icon_picker_bs_3</code><br>
+      <strong>License:</strong> MIT
+    </div>
+
+    <p class="lead">
+      Most teams do not rebuild their back office every year. They run production systems that have to stay stable, predictable, and maintainable over time.
+      That is exactly where <code>icon_picker_bs_3</code> is useful: it gives Bootstrap 3 projects a modern, scalable icon selection workflow without forcing
+      expensive rewrites, while still keeping a clean path toward Bootstrap 5 and future icon packs.
+    </p>
+
+    <h2>Why This Plugin Exists</h2>
+    <p>
+      In real projects, icon selection often starts as a tiny requirement: “let editors choose an icon.” Then reality arrives. Suddenly you need:
+    </p>
+    <ul>
+      <li>consistent form behavior across many admin screens,</li>
+      <li>a picker that works with legacy Bootstrap 3 layout constraints,</li>
+      <li>support for large icon libraries (not just 30 handpicked symbols),</li>
+      <li>search and discoverability for non-technical users,</li>
+      <li>localization for multilingual teams,</li>
+      <li>clear upgrade strategy to newer UI stacks.</li>
+    </ul>
+    <p>
+      <code>icon_picker_bs_3</code> was designed specifically for this scenario. It is not a toy widget. It is a practical UI component architecture that solves
+      production-level concerns: data separation, language separation, API stability, and user-friendly browsing at scale.
+    </p>
+
+    <h2>Can You Offer It From Your Website and GitHub?</h2>
+    <p>
+      Yes. Absolutely. In fact, you should do both:
+    </p>
+    <ul>
+      <li><strong>Your website</strong> gives clients and non-technical users a direct download point and demo context.</li>
+      <li><strong>GitHub</strong> gives developers version history, issue tracking, transparency, and integration-friendly distribution.</li>
+    </ul>
+    <p>
+      A strong publishing strategy is:
+    </p>
+    <ul>
+      <li>Website: release notes, usage docs, screenshot/video, “download latest” package.</li>
+      <li>GitHub: tagged releases, changelog, source code, issue templates, and roadmap.</li>
+    </ul>
+    <p>
+      Since the project already uses an MIT license, this dual distribution model is straightforward and developer-friendly.
+    </p>
+
+    <h2>What Makes This Plugin Technically Solid</h2>
+    <h3>1) Legacy-Compatible UI, Future-Oriented Design</h3>
+    <p>
+      The plugin is intentionally built for Bootstrap 3, including modal behavior and input-group compatibility. At the same time, the code is structured around
+      adapters and configurable providers. That means migration effort shifts from “rewrite everything” to “swap integration layer.”
+    </p>
+
+    <h3>2) Real Icon Scale, Not Demo Scale</h3>
+    <p>
+      The current dataset supports full categorized Line Awesome content with over a thousand unique icons. This matters because discovery is the core UX problem
+      once icon count grows. Without structure, users waste time and make inconsistent choices.
+    </p>
+
+    <h3>3) Category-Based Discovery with Accordion UX</h3>
+    <p>
+      Inspired by proven catalog interfaces, the modal groups icons by topic and supports accordion navigation. Search remains available for direct access, but
+      categories provide context and faster visual scanning.
+    </p>
+
+    <h3>4) Language as Configuration, Not Hardcoded Strings</h3>
+    <p>
+      UI text and category labels are placed in separate locale files. You initialize with <code>lang: "pl-pl"</code> or <code>lang: "en-us"</code>, and the UI
+      adjusts accordingly. This is the right architecture for multi-language products.
+    </p>
+
+    <h3>5) Multiple Instance Safety</h3>
+    <p>
+      The plugin is designed to run multiple times on one page. This is mandatory for complex CMS/admin panels where users configure many components in one form.
+    </p>
+
+    <h2>Installation and Project Structure</h2>
+    <p>
+      A clean setup keeps maintenance costs low. Recommended files:
+    </p>
+    <pre><code>icon_picker_bs_3/
+├── icon-picker.js
+├── icon-picker.css
+├── line-awesome-categories.js
+├── line-awesome-categories.json
+├── icon-picker.locale.en-us.js
+├── icon-picker.locale.pl-pl.js
+├── index.html
+├── index.php
+├── LICENSE
+└── README.md</code></pre>
+
+    <h3>Include Dependencies</h3>
+    <pre><code>&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css"&gt;
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css"&gt;
+&lt;link rel="stylesheet" href="./icon-picker.css"&gt;
+
+&lt;script src="https://code.jquery.com/jquery-1.12.4.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"&gt;&lt;/script&gt;
+&lt;script src="./line-awesome-categories.js"&gt;&lt;/script&gt;
+&lt;script src="./icon-picker.locale.en-us.js"&gt;&lt;/script&gt;
+&lt;script src="./icon-picker.locale.pl-pl.js"&gt;&lt;/script&gt;
+&lt;script src="./icon-picker.js"&gt;&lt;/script&gt;</code></pre>
+
+    <h2>Core Usage Example</h2>
+    <h3>Input + Button Variant</h3>
+    <pre><code>&lt;div id="service-icon-picker" data-value="la la-home"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+$("#service-icon-picker").icon_picker_bs_3({
+  bootstrapVersion: 3,
+  lang: "pl-pl",
+  iconProvider: IconPickerBs3Providers.lineAwesome,
+  categories: window.ICON_PICKER_LINE_AWESOME.categories,
+  inputName: "service_icon",
+  showInput: true,
+  selectedIcon: "home"
+});
+&lt;/script&gt;</code></pre>
+
+    <h3>Button-Only Variant</h3>
+    <pre><code>&lt;div id="compact-picker"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+$("#compact-picker").icon_picker_bs_3({
+  bootstrapVersion: 3,
+  lang: "en-us",
+  iconProvider: IconPickerBs3Providers.lineAwesome,
+  categories: window.ICON_PICKER_LINE_AWESOME.categories,
+  inputName: "compact_icon",
+  showInput: false,
+  buttonOnly: true,
+  selectedIcon: "search"
+});
+&lt;/script&gt;</code></pre>
+
+    <h2>Behavior Model and UX Details</h2>
+    <p>
+      The current accordion behavior is tuned for clarity:
+    </p>
+    <ul>
+      <li>all categories start collapsed,</li>
+      <li>clicking a category header expands it with smooth animation,</li>
+      <li>opening another category closes the previous one,</li>
+      <li>icon click updates preview and input value immediately.</li>
+    </ul>
+    <p>
+      This interaction pattern is highly efficient for large icon datasets because users stay oriented in one active context at a time.
+    </p>
+
+    <h2>Localization Architecture (E-E-A-T in Practice)</h2>
+    <p>
+      Serious plugins avoid hardcoded text because language debt becomes maintenance debt. Here, localization follows a disciplined model:
+    </p>
+    <ul>
+      <li><code>icon-picker.locale.en-us.js</code> defines the default English UI set,</li>
+      <li><code>icon-picker.locale.pl-pl.js</code> defines Polish equivalents,</li>
+      <li><code>lang</code> in initialization selects locale at runtime.</li>
+    </ul>
+    <p>
+      This architecture demonstrates operational maturity. It reduces regressions, avoids duplicated custom forks, and makes QA predictable across language variants.
+    </p>
+
+    <h3>Minimal Locale Example</h3>
+    <pre><code>window.IconPickerLocales = window.IconPickerLocales || {};
+window.IconPickerLocales["en-us"] = {
+  modalTitle: "Select icon",
+  searchPlaceholder: "Search icon...",
+  closeButton: "Close",
+  noResults: "No results.",
+  categoryLabels: {
+    "business": "Business",
+    "social": "Social"
+  }
+};</code></pre>
+
+    <h2>Working with Data Sources</h2>
+    <p>
+      The plugin supports a key best practice: <strong>data outside logic</strong>. Icon content and category structures are loaded from dedicated files, so you can:
+    </p>
+    <ul>
+      <li>update icon datasets without touching plugin internals,</li>
+      <li>replace the icon library while preserving UI workflow,</li>
+      <li>version icon packs independently from widget behavior.</li>
+    </ul>
+    <p>
+      This is exactly how long-lived front-end components remain maintainable in enterprise or agency environments.
+    </p>
+
+    <h2>Production Use Cases</h2>
+    <h3>1) CMS Menu Builder</h3>
+    <p>
+      Editors choose icons for navigation items. Using categorized icon browsing reduces random icon decisions and improves visual consistency site-wide.
+    </p>
+
+    <h3>2) Landing Page Section Configurator</h3>
+    <p>
+      Non-technical users assign icons to benefit blocks, feature cards, and trust badges. Search + category combination speeds up content creation significantly.
+    </p>
+
+    <h3>3) B2B Admin Panel Forms</h3>
+    <p>
+      Back-office users maintain statuses, markers, and action definitions. The plugin’s hidden input format integrates directly with existing PHP/legacy form workflows.
+    </p>
+
+    <h3>4) White-Label Platforms</h3>
+    <p>
+      Brand teams can switch language packs and icon sets per customer profile without rewriting the picker interface.
+    </p>
+
+    <h2>Performance and Stability Considerations</h2>
+    <p>
+      Large icon catalogs can degrade UI responsiveness if implemented carelessly. Practical guidance:
+    </p>
+    <ul>
+      <li>load datasets once and reuse in multiple instances,</li>
+      <li>keep rendering scoped to active modal context,</li>
+      <li>prefer category segmentation over one gigantic flat grid,</li>
+      <li>avoid unnecessary DOM rebuilds outside state changes.</li>
+    </ul>
+    <p>
+      These are not theoretical recommendations; they come from observed behavior in real admin panels where forms can contain multiple heavy controls.
+    </p>
+
+    <h2>Security and Compliance Mindset</h2>
+    <p>
+      Even UI plugins should follow disciplined engineering standards:
+    </p>
+    <ul>
+      <li>keep third-party dependencies explicit and documented,</li>
+      <li>license your code clearly (MIT in this project),</li>
+      <li>track third-party licenses for bundled data/icon assets,</li>
+      <li>avoid inline unsafe patterns in production templates.</li>
+    </ul>
+    <p>
+      This protects both developers and business owners when shipping to client systems.
+    </p>
+
+    <h2>Migration Path to Bootstrap 5</h2>
+    <p>
+      The plugin was developed with migration pressure in mind. A practical transition plan:
+    </p>
+    <ol>
+      <li>Keep data and locales unchanged.</li>
+      <li>Switch modal adapter behavior and class naming where needed.</li>
+      <li>Adjust CSS layer for Bootstrap 5 utility conventions.</li>
+      <li>Retest initialization API and event wiring.</li>
+    </ol>
+    <p>
+      Because logic is already separated from data and language, the move focuses on integration details rather than full component replacement.
+    </p>
+
+    <h2>Advanced API Patterns</h2>
+    <p>
+      Beyond basic initialization, there are common patterns worth using:
+    </p>
+    <h3>Read Selected Value</h3>
+    <pre><code>var value = $("#service-icon-picker").icon_picker_bs_3("getValue");
+var icon = $("#service-icon-picker").icon_picker_bs_3("getIcon");</code></pre>
+
+    <h3>Listen for Changes</h3>
+    <pre><code>$("#service-icon-picker").on("iconpicker:change", function (event, payload) {
+  console.log("Selected icon:", payload.icon);
+  console.log("Stored value:", payload.value);
+});</code></pre>
+
+    <h3>Update Categories Dynamically</h3>
+    <pre><code>$("#service-icon-picker").icon_picker_bs_3("setCategories", newCategories);</code></pre>
+
+    <h2>Publishing Best Practices (Website + GitHub)</h2>
+    <p>
+      To maximize trust and adoption, publish like a professional maintainer:
+    </p>
+    <ul>
+      <li>Tag semantic releases on GitHub (for example <code>v1.0.0</code>, <code>v1.1.0</code>).</li>
+      <li>Keep a short changelog of user-facing changes.</li>
+      <li>Host a stable downloadable bundle on your website.</li>
+      <li>Provide one canonical documentation page with copy-paste snippets.</li>
+      <li>Include screenshot and short GIF showing accordion and search behavior.</li>
+    </ul>
+    <p>
+      This combination communicates reliability, which is a core E-E-A-T signal for technical products.
+    </p>
+
+    <h2>FAQ</h2>
+    <h3>Does this plugin require jQuery?</h3>
+    <p>
+      Yes. In Bootstrap 3 environments this is expected and aligns with legacy stack constraints.
+    </p>
+
+    <h3>Can I use only button mode?</h3>
+    <p>
+      Yes. Set <code>showInput: false</code> and <code>buttonOnly: true</code>.
+    </p>
+
+    <h3>Can I switch to a different icon pack?</h3>
+    <p>
+      Yes. Replace the provider and category dataset; keep the picker core.
+    </p>
+
+    <h3>Can this work in multilingual admin panels?</h3>
+    <p>
+      Yes. Locale files are external, and language is selected via the <code>lang</code> option.
+    </p>
+
+    <h2>Final Takeaway</h2>
+    <p>
+      <code>icon_picker_bs_3</code> is more than a modal with icons. It is a practical engineering response to a common product challenge:
+      modern UX requirements inside legacy front-end ecosystems.
+    </p>
+    <p>
+      It gives teams immediate usability gains (search, categories, clear selection flow), while preserving maintainability through separations of concern:
+      logic, data, and language are independent.
+    </p>
+    <p>
+      If you are operating Bootstrap 3 systems today but planning incremental modernization, this is exactly the kind of component that lets you improve user
+      experience now, without creating migration dead-ends later.
+    </p>
+
+    <div class="note">
+      <strong>Recommended next step:</strong> publish this article on your website as the canonical documentation page, and link the same guide from GitHub README.
+      This creates a single trusted source for developers and clients.
+    </div>
+  </article>
+</body>
+</html>
